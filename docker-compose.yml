@@ -38,5 +38,18 @@ services:
         image: redis:alpine
         container_name: crm_redis
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: crm_phpmyadmin
+        restart: always
+        ports:
+            - "8081:80"
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: root
+        depends_on:
+            - db
+
 volumes:
     db_data:
